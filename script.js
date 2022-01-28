@@ -103,10 +103,16 @@ const characters = {
 };
 
 function load_character_stats() {
-  const character = document.querySelector( '.character' ).innerText;
-  const table = document.createElement( 'table' );  
+  let character = document.querySelector( '.character' );
+  
+  if( character ) {
+    character = character.innerText;
+  }
+  
+  let growths = document.createElement( 'table' );  
+  console.log( characters );
   console.log( character );
-  console.log( table );
+  console.log( growths );
 }
 
 load_character_stats();
