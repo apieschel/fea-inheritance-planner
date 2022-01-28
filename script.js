@@ -18,9 +18,36 @@ const characters = {
   },
   second_gen: {
     inigo: {
-      base: [],
-      growths: [],
-      caps: [],
+      base: {
+        hp: 11,
+        strength: 5,
+        magic: 2,
+        skill: 4,
+        speed: 9,
+        luck: 12, 
+        def: 4,
+        res: 4,
+      },
+      growths: {
+        hp: 11,
+        strength: 5,
+        magic: 2,
+        skill: 4,
+        speed: 9,
+        luck: 12, 
+        def: 4,
+        res: 4,
+      },
+      caps: {
+        hp: 11,
+        strength: 5,
+        magic: 2,
+        skill: 4,
+        speed: 9,
+        luck: 12, 
+        def: 4,
+        res: 4,
+      },
       classes: []  
     }
   }
