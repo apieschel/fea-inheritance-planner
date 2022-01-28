@@ -105,7 +105,7 @@ const characters = {
 const fatherSelect = document.querySelector( '.father' );
 const growths = document.querySelector( '.growths' );
 
-function load_character_stats() {
+function display_character_stats() {
   let character = document.querySelector( '.character' );
   
   if( character ) {
@@ -135,17 +135,48 @@ function load_character_stats() {
   table.appendChild( thead );
   table.appendChild( tbody );
   growths.appendChild( table );
-  
-  console.log( characters );
-  console.log( character );
-  console.log( table );
 }
 
-load_character_stats();
+function calculate_growth_rates( mother, father, child ) {
+  const childGrowths = Object.values( characters.second_gen[child].growths );
+  const motherGrowths = Object.values( characters.first_gen[mother].growths );
+  const fatherGrowths = Object.values( characters.first_gen[father].growths );
+  console.log();
+  console.log();
+  console.log();
+}
+
+display_character_stats();
 
 if( fatherSelect ) {
-  fatherSelect.addEventListener( 'change', ( e ) => {
-    console.log( e.target.value );
+  fatherSelect.addEventListener( 'change', ( e ) => {  
     growths.innerHTML = '';
+    
+    const character = e.target.value;
+    let table = document.createElement( 'table' );
+    let thead = document.createElement( 'thead' );
+    let tbody = document.createElement( 'tbody' );
+    const keyrow = document.createElement( 'tr' );
+    const valrow = document.createElement( 'tr' );
+    
+    if( characters.first_gen[character] ) { 
+      Object.keys( characters.first_gen[character].growths ).map( ( key ) => {
+        const th = document.createElement( 'th' );
+        th.innerText = key;
+        keyrow.appendChild( th );
+      } );
+
+      Object.values( characters.first_gen[character].growths ).map( ( val ) => {
+        const td = document.createElement( 'td' );
+        td.innerText = val + '%';
+        valrow.appendChild( td );
+      } );
+
+      thead.appendChild( keyrow );
+      tbody.appendChild( valrow );
+      table.appendChild( thead );
+      table.appendChild( tbody );
+      growths.appendChild( table );
+    }
   } );  
 }
