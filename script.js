@@ -109,11 +109,33 @@ function load_character_stats() {
     character = character.innerText;
   }
   
-  let growths = document.createElement( 'table' ); 
-  characters.second_gen.inigo
+  let table = document.createElement( 'table' );
+  let thead = document.createElement( 'thead' );
+  let tbody = document.createElement( 'tbody' );
+  const keyrow = document.createElement( 'tr' );
+  const valrow = document.createElement( 'tr' );
+  
+  Object.keys( characters.second_gen.inigo.growths ).map( ( key ) => {
+    const td = document.createElement( 'td' );
+    td.innerText = key;
+    keyrow.appendChild( td );
+  } );
+  
+  Object.values( characters.second_gen.inigo.growths ).map( ( val ) => {
+    const td = document.createElement( 'td' );
+    td.innerText = val;
+    valrow.appendChild( td );
+  } );
+  
+  thead.appendChild( keyrow );
+  tbody.appendChild( valrow );
+  table.appendChild( thead );
+  table.appendChild( tbody );
+  document.querySelector( '.growths' ).appendChild( table );
+  
   console.log( characters );
   console.log( character );
-  console.log( growths );
+  console.log( table );
 }
 
 load_character_stats();
