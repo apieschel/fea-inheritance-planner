@@ -109,7 +109,8 @@ function load_character_stats() {
     character = character.innerText;
   }
   
-  let growths = document.createElement( 'table' );  
+  let growths = document.createElement( 'table' ); 
+  characters.second_gen.inigo
   console.log( characters );
   console.log( character );
   console.log( growths );
