@@ -4,7 +4,37 @@ const classes = {
     growths: [],
     caps: [],
     skills: ["heart_seeker", "malefic_aura"]
-  }  
+  },
+  myrmidon: {
+    base: [],
+    growths: {
+        hp: 10,
+        strength: 10,
+        magic: 0,
+        skill: 15,
+        speed: 20,
+        luck: 15, 
+        def: 0,
+        res: 10,
+      },
+    caps: [],
+    skills: []
+  },
+  mercenary: {
+    base: [],
+    growths: {
+        hp: 10,
+        strength: 15,
+        magic: 0,
+        skill: 20,
+        speed: 15,
+        luck: 5, 
+        def: 10,
+        res: 5,
+      },
+    caps: [],
+    skills: []
+  }
 };
 
 const characters = {
@@ -145,7 +175,7 @@ function calculate_growth_rates( mother, father, child ) {
     const newGrowths = [];
     
     childGrowths.forEach( ( val, i ) => {
-      newGrowths.push( val + motherGrowths[i] + fatherGrowths[i] / 3 ); 
+      newGrowths.push( Math.round( ( val + motherGrowths[i] + fatherGrowths[i] ) / 3 ) ); 
     } );
     
     return newGrowths;
@@ -168,16 +198,16 @@ if( fatherSelect ) {
     const keyrow = document.createElement( 'tr' );
     const valrow = document.createElement( 'tr' );
     
-    const growths = calculate_growth_rates( 'olivia', e.target.value, 'inigo' );
+    const newGrowths = calculate_growth_rates( 'olivia', e.target.value, 'inigo' );
     
-    if( growths ) { 
+    if( newGrowths ) { 
       Object.keys( characters.first_gen[character].growths ).map( ( key ) => {
         const th = document.createElement( 'th' );
         th.innerText = key;
         keyrow.appendChild( th );
       } );
 
-      growths.map( ( val ) => {
+      newGrowths.map( ( val ) => {
         const td = document.createElement( 'td' );
         td.innerText = val + '%';
         valrow.appendChild( td );
