@@ -25,3 +25,10 @@ const characters = {
     }
   }
 };
+
+function load_character_stats() {
+  const character = document.querySelector( '.character' ).innerText;
+  const table = document.createElement( 'table' );  
+}
+
+load_character_stats();
