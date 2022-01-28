@@ -21,16 +21,24 @@ const characters = {
         res: 4,
       },
       growths: {
-        hp: 50,
+        hp: 40,
         strength: 35,
-        magic: 15,
-        skill: 35,
+        magic: 25,
+        skill: 45,
         speed: 45,
-        luck: 65, 
-        def: 30,
+        luck: 60, 
+        def: 20,
         res: 20,
       },
-      caps: {},
+      caps: { 
+        strength: 0,
+        magic: 0,
+        skill: 1,
+        speed: 1,
+        luck: 0, 
+        def: -1,
+        res: -1,
+      },
       classes: ["mercenary", "hero", "bow_knight", "myrmidon", "swordmaster", "assassin", "barbarian", "berserker", "warrior"],
     },
     lonqu: {   
@@ -69,7 +77,6 @@ const characters = {
   second_gen: {
     inigo: {
       base: {
-        level: 10
         hp: 11,
         strength: 5,
         magic: 2,
@@ -78,7 +85,6 @@ const characters = {
         luck: 12, 
         def: 4,
         res: 4,
-        mov: 5
       },
       growths: {
         hp: 50,
@@ -99,6 +105,8 @@ const characters = {
 function load_character_stats() {
   const character = document.querySelector( '.character' ).innerText;
   const table = document.createElement( 'table' );  
+  console.log( character );
+  console.log( table );
 }
 
 load_character_stats();
