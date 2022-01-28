@@ -1,16 +1,27 @@
 const classes = {
-  "dark mage": {
+  dark_mage: {
+    base: [],
     growths: [],
     caps: [],
-    skills: []
+    skills: ["heart_seeker", "malefic_aura"]
   }  
 };
 
 const characters = {
-  tharja: {
-    classes: [],
-    base: [],
-    growths: [],
-    caps: []
-  }     
+  first_gen: {
+    tharja: {
+      base: [],
+      growths: [],
+      caps: [],
+      classes: []
+    }  
+  },
+  second_gen: {
+    inigo: {
+      base: [],
+      growths: [],
+      caps: [],
+      classes: []  
+    }
+  }
 };
