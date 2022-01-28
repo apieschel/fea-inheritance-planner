@@ -138,12 +138,16 @@ function display_character_stats() {
 }
 
 function calculate_growth_rates( mother, father, child ) {
-  const childGrowths = Object.values( characters.second_gen[child].growths );
-  const motherGrowths = Object.values( characters.first_gen[mother].growths );
-  const fatherGrowths = Object.values( characters.first_gen[father].growths );
-  console.log();
-  console.log();
-  console.log();
+  if( characters.second_gen[child] && characters.first_gen[mother] && characters.first_gen[father] ) {
+    const childGrowths = Object.values( characters.second_gen[child].growths );
+    const motherGrowths = Object.values( characters.first_gen[mother].growths );
+    const fatherGrowths = Object.values( characters.first_gen[father].growths );
+    console.log( childGrowths );
+    console.log( motherGrowths );
+    console.log( fatherGrowths );
+  } else {
+    console.log( 'Data is missing.' );
+  }
 }
 
 display_character_stats();
@@ -158,6 +162,8 @@ if( fatherSelect ) {
     let tbody = document.createElement( 'tbody' );
     const keyrow = document.createElement( 'tr' );
     const valrow = document.createElement( 'tr' );
+    
+    calculate_growth_rates( 'olivia', e.target.value, 'inigo' );
     
     if( characters.first_gen[character] ) { 
       Object.keys( characters.first_gen[character].growths ).map( ( key ) => {
