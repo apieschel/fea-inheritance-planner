@@ -45,14 +45,14 @@ const characters = {
         res: 2,
       },
       growths: {
-        hp: 80,
-        strength: 55,
+        hp: 40,
+        strength: 35,
         magic: 20,
-        skill: 75,
-        speed: 75,
+        skill: 50,
+        speed: 50,
         luck: 55, 
-        def: 30,
-        res: 25,
+        def: 25,
+        res: 20,
       },
       caps: { 
         strength: 0,
@@ -63,12 +63,13 @@ const characters = {
         def: -2,
         res: -2,
       },
-      classes: ["myrmidon", "swordmaster", "assassin", "barbarian", "berserker", "warrior"],
+      classes: ["myrmidon", "swordmaster", "assassin", "thief", "trickster", "wyvern_rider", "wyvern_lord", "griffon_rider"],
     }
   },
   second_gen: {
     inigo: {
       base: {
+        level: 10
         hp: 11,
         strength: 5,
         magic: 2,
@@ -77,6 +78,7 @@ const characters = {
         luck: 12, 
         def: 4,
         res: 4,
+        mov: 5
       },
       growths: {
         hp: 50,
