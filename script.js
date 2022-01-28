@@ -102,6 +102,9 @@ const characters = {
   }
 };
 
+const fatherSelect = document.querySelector( '.father' );
+const growths = document.querySelector( '.growths' );
+
 function load_character_stats() {
   let character = document.querySelector( '.character' );
   
@@ -131,7 +134,7 @@ function load_character_stats() {
   tbody.appendChild( valrow );
   table.appendChild( thead );
   table.appendChild( tbody );
-  document.querySelector( '.growths' ).appendChild( table );
+  growths.appendChild( table );
   
   console.log( characters );
   console.log( character );
@@ -139,3 +142,10 @@ function load_character_stats() {
 }
 
 load_character_stats();
+
+if( fatherSelect ) {
+  fatherSelect.addEventListener( 'change', ( e ) => {
+    console.log( e.target.value );
+    growths.innerHTML = '';
+  } );  
+}
