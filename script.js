@@ -142,11 +142,16 @@ function calculate_growth_rates( mother, father, child ) {
     const childGrowths = Object.values( characters.second_gen[child].growths );
     const motherGrowths = Object.values( characters.first_gen[mother].growths );
     const fatherGrowths = Object.values( characters.first_gen[father].growths );
-    console.log( childGrowths );
-    console.log( motherGrowths );
-    console.log( fatherGrowths );
+    const newGrowths = [];
+    
+    childGrowths.forEach( ( val, i ) => {
+      newGrowths.push( val + motherGrowths[i] + fatherGrowths[i] / 3 ); 
+    } );
+    
+    return newGrowths;
   } else {
     console.log( 'Data is missing.' );
+    return false;
   }
 }
 
@@ -163,16 +168,16 @@ if( fatherSelect ) {
     const keyrow = document.createElement( 'tr' );
     const valrow = document.createElement( 'tr' );
     
-    calculate_growth_rates( 'olivia', e.target.value, 'inigo' );
+    const growths = calculate_growth_rates( 'olivia', e.target.value, 'inigo' );
     
-    if( characters.first_gen[character] ) { 
+    if( growths ) { 
       Object.keys( characters.first_gen[character].growths ).map( ( key ) => {
         const th = document.createElement( 'th' );
         th.innerText = key;
         keyrow.appendChild( th );
       } );
 
-      Object.values( characters.first_gen[character].growths ).map( ( val ) => {
+      growths.map( ( val ) => {
         const td = document.createElement( 'td' );
         td.innerText = val + '%';
         valrow.appendChild( td );
