@@ -8,14 +8,14 @@ const classes = {
   myrmidon: {
     base: [],
     growths: {
-        hp: 10,
-        strength: 10,
+        hp: 40,
+        strength: 20,
         magic: 0,
-        skill: 15,
-        speed: 20,
-        luck: 15, 
-        def: 0,
-        res: 10,
+        skill: 25,
+        speed: 25,
+        luck: 0, 
+        def: 5,
+        res: 5,
       },
     caps: [],
     skills: []
@@ -23,12 +23,12 @@ const classes = {
   mercenary: {
     base: [],
     growths: {
-        hp: 10,
-        strength: 15,
+        hp: 45,
+        strength: 20,
         magic: 0,
-        skill: 20,
-        speed: 15,
-        luck: 5, 
+        skill: 25,
+        speed: 20,
+        luck: 0, 
         def: 10,
         res: 5,
       },
@@ -167,15 +167,16 @@ function display_character_stats() {
   growths.appendChild( table );
 }
 
-function calculate_growth_rates( mother, father, child ) {
-  if( characters.second_gen[child] && characters.first_gen[mother] && characters.first_gen[father] ) {
+function calculate_growth_rates( mother, father, child, active_class ) {
+  if( characters.second_gen[child] && characters.first_gen[mother] && characters.first_gen[father] && classes[active_class] ) {
     const childGrowths = Object.values( characters.second_gen[child].growths );
     const motherGrowths = Object.values( characters.first_gen[mother].growths );
     const fatherGrowths = Object.values( characters.first_gen[father].growths );
+    const classGrowths = Object.values( classes[active_class].growths );
     const newGrowths = [];
     
     childGrowths.forEach( ( val, i ) => {
-      newGrowths.push( Math.round( ( val + motherGrowths[i] + fatherGrowths[i] ) / 3 ) ); 
+      newGrowths.push( Math.floor( ( ( val + motherGrowths[i] + fatherGrowths[i] ) / 3 ) + classGrowths[i] ) ); 
     } );
     
     return newGrowths;
@@ -198,7 +199,7 @@ if( fatherSelect ) {
     const keyrow = document.createElement( 'tr' );
     const valrow = document.createElement( 'tr' );
     
-    const newGrowths = calculate_growth_rates( 'olivia', e.target.value, 'inigo' );
+    const newGrowths = calculate_growth_rates( 'olivia', e.target.value, 'inigo', 'mercenary' );
     
     if( newGrowths ) { 
       Object.keys( characters.first_gen[character].growths ).map( ( key ) => {
