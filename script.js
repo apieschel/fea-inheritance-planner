@@ -127,7 +127,8 @@ const characters = {
         res: 20,
       },
       classes: ["mercenary", "hero", "bow_knight", "myrmidon", "swordmaster", "assassin", "barbarian", "berserker", "warrior"],
-      skills: ["armsthrift", "patience"]
+      skills: ["armsthrift", "patience"],
+      mother: "olivia"
     }
   }
 };
