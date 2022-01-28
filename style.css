@@ -1,0 +1,29 @@
+* {
+  border-collapse: collapse;  
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  background: black;
+  color: white;
+  font-weight: normal;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+tr {
+  border: 1px solid black;
+}
+
+th, td {
+  padding: 8px;
+}
+
+td {
+  border-right: 1px solid black;
+}

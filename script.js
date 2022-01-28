@@ -116,14 +116,14 @@ function load_character_stats() {
   const valrow = document.createElement( 'tr' );
   
   Object.keys( characters.second_gen.inigo.growths ).map( ( key ) => {
-    const td = document.createElement( 'td' );
-    td.innerText = key;
-    keyrow.appendChild( td );
+    const th = document.createElement( 'th' );
+    th.innerText = key;
+    keyrow.appendChild( th );
   } );
   
   Object.values( characters.second_gen.inigo.growths ).map( ( val ) => {
     const td = document.createElement( 'td' );
-    td.innerText = val;
+    td.innerText = val + '%';
     valrow.appendChild( td );
   } );
   
