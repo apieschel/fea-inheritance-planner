@@ -1,3 +1,6 @@
+const growthKeys = ["hp", "strength",	"magic",	"skill",	"speed",	"luck",	"def",	"res"];
+const capKeys = ["strength",	"magic",	"skill",	"speed",	"luck",	"def",	"res"];
+
 const classes = {
   dark_mage: {
     base: [],
@@ -149,16 +152,13 @@ function display_character_stats() {
   const keyrow = document.createElement( 'tr' );
   const valrow = document.createElement( 'tr' );
   
-  Object.keys( characters.second_gen.inigo.growths ).map( ( key ) => {
+  Object.values( characters.second_gen.inigo.growths ).map( ( val, i ) => {
     const th = document.createElement( 'th' );
-    th.innerText = key;
-    keyrow.appendChild( th );
-  } );
-  
-  Object.values( characters.second_gen.inigo.growths ).map( ( val ) => {
     const td = document.createElement( 'td' );
     td.innerText = val + '%';
     valrow.appendChild( td );
+    th.innerText = growthKeys[i];
+    keyrow.appendChild( th );
   } );
   
   thead.appendChild( keyrow );
