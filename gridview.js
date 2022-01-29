@@ -7,7 +7,7 @@ function load_grid() {
   if( grid ) {
     Object.keys( characters.first_gen ).forEach( ( character ) => {
       const gridItem = document.createElement( 'div' );
-      gridItem.innerText = character;
+      gridItem.innerHTML = '<span>' + character + '</span>';
       gridItem.className = 'grid-item ' + character;
       grid.appendChild( gridItem );
     } ); 

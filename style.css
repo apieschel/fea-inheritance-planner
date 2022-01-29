@@ -48,7 +48,20 @@ td {
 }
 
 .grid-item {
+  background-size: cover;
   border: 2px solid black;
-  padding: 2px;
+  overflow: hidden;
   text-transform: capitalize;
+}
+
+.grid-item::after {
+  display: block;
+  height: 100%;
+  width: 100%; 
+  content: '';
+  background: rgba(200, 200, 200, 0.5);
+}
+
+.chrom {
+  background-image: url('https://cdn.glitch.global/9e2e29a4-7d22-4811-83ed-f363a298e10c/chrom.png?v=1643478689150');
 }
