@@ -8,7 +8,14 @@ function load_grid() {
     Object.keys( characters.first_gen ).forEach( ( character ) => {
       const gridItem = document.createElement( 'div' );
       gridItem.innerText = character;
-      gridItem.className = 'grid-item';
+      gridItem.className = 'grid-item ' + character;
+      grid.appendChild( gridItem );
+    } ); 
+    
+    Object.keys( characters.second_gen ).forEach( ( character ) => {
+      const gridItem = document.createElement( 'div' );
+      gridItem.innerText = character;
+      gridItem.className = 'grid-item ' + character;
       grid.appendChild( gridItem );
     } ); 
   }

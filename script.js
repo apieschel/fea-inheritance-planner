@@ -54,12 +54,6 @@ const characters = {
     sumia: {},
     kellam: {},
     donnel: {},
-    ricken: {},
-    maribelle: {}, 
-    panne: {},
-    gaius: {},
-    cordelia: {},
-    gregor: {}
     lonqu: {   
       base: {
         hp: 20,
@@ -92,6 +86,16 @@ const characters = {
       },
       classes: ["myrmidon", "swordmaster", "assassin", "thief", "trickster", "wyvern_rider", "wyvern_lord", "griffon_rider"],
     },
+    ricken: {},
+    maribelle: {}, 
+    panne: {},
+    gaius: {},
+    cordelia: {},
+    gregor: {},
+    nowi: {},
+    libra: {},
+    tharja: {},
+    anna: {},
     olivia: {  
       base: {
         hp: 11,
@@ -124,8 +128,16 @@ const characters = {
       },
       classes: ["mercenary", "hero", "bow_knight", "myrmidon", "swordmaster", "assassin", "barbarian", "berserker", "warrior"],
     },
+    cherche: {},
+    henry: {},
+    sayri: {},
+    tiki: {},
+    basilio: {},
+    flavia: {}
   },
   second_gen: {
+    lucina: {},
+    owain: {},
     inigo: {
       base: {
         hp: 11,
@@ -150,7 +162,17 @@ const characters = {
       classes: ["mercenary", "hero", "bow_knight", "myrmidon", "swordmaster", "assassin", "barbarian", "berserker", "warrior"],
       skills: ["armsthrift", "patience"],
       mother: "olivia"
-    }
+    },
+    brady: {},
+    kjelle: {},
+    cynthia: {},
+    severa: {},
+    gerome: {},
+    morgan: {},
+    yarne: {},
+    laurent: {},
+    noire: {},
+    nah: {}
   }
 };
 
