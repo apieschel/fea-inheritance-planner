@@ -54,14 +54,23 @@ td {
   text-transform: capitalize;
 }
 
+.grid-item span {
+  padding: 2px;
+  position: absolute;
+}
+
 .grid-item::after {
   display: block;
   height: 100%;
   width: 100%; 
   content: '';
-  background: rgba(200, 200, 200, 0.5);
+  background: rgba(210, 210, 210, 0.6);
 }
 
 .chrom {
   background-image: url('https://cdn.glitch.global/9e2e29a4-7d22-4811-83ed-f363a298e10c/chrom.png?v=1643478689150');
+}
+
+.robin {
+  background-image: url('https://cdn.glitch.global/9e2e29a4-7d22-4811-83ed-f363a298e10c/robin.png?v=1643479480614');
 }

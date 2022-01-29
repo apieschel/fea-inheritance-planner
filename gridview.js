@@ -12,10 +12,17 @@ function load_grid() {
       grid.appendChild( gridItem );
     } ); 
     
+    const emptyCell = document.createElement( 'div' );
+    emptyCell.className = 'grid-item';
+    emptyCell.style = 'background: black;';
+    grid.appendChild( emptyCell );
+    const emptyCellClone = emptyCell.cloneNode();
+    grid.appendChild( emptyCellClone );
+    
     Object.keys( characters.second_gen ).forEach( ( character ) => {
       const gridItem = document.createElement( 'div' );
-      gridItem.innerText = character;
-      gridItem.className = 'grid-item ' + character;
+      gridItem.innerHTML = '<span>' + character + '</span>';
+      gridItem.className = 'grid-item ' + character + ' child';
       grid.appendChild( gridItem );
     } ); 
   }
