@@ -169,15 +169,17 @@ function display_character_stats() {
 }
 
 function calculate( mother, father, child, active_class, calc ) {
-  if( characters.second_gen[child] && characters.first_gen[mother] && characters.first_gen[father] && classes[active_class] && classes ) {
-    const child = Object.values( characters.second_gen[child][calc] );
-    const mother = Object.values( characters.first_gen[mother][calc] );
-    const father = Object.values( characters.first_gen[father][calc] );
+  const dataComplete = characters.second_gen[child] && characters.first_gen[mother] && characters.first_gen[father] && classes[active_class] && classes[active_class][calc] && characters.first_gen[mother][calc] && characters.first_gen[father][calc];  
+  
+  if( dataComplete ) {
+    const childStats = Object.values( characters.second_gen[child][calc] );
+    const motherStats = Object.values( characters.first_gen[mother][calc] );
+    const fatherStats = Object.values( characters.first_gen[father][calc] );
     const activeClass = Object.values( classes[active_class][calc] );
     const newValues = [];
     
-    child.forEach( ( val, i ) => {
-      newValues.push( Math.floor( ( ( val + mother[i] + father[i] ) / 3 ) + activeClass[i] ) ); 
+    childStats.forEach( ( val, i ) => {
+      newValues.push( Math.floor( ( ( val + motherStats[i] + fatherStats[i] ) / 3 ) + activeClass[i] ) ); 
     } );
     
     return newValues;
