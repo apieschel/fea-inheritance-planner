@@ -45,6 +45,15 @@ const characters = {
     robin: {},
     chrom: {},
     lissa: {},
+    frederick: {},
+    sully: {},
+    virion: {},
+    stahl: {},
+    vaike: {},
+    miriel: {},
+    sumia: {},
+    kellam: {},
+    donnel: {},
     olivia: {  
       base: {
         hp: 11,
