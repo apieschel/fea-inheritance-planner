@@ -52,6 +52,8 @@ td {
 
 .tile {
   background-size: cover;  
+  display: block;
+  position: absolute;
 }
 
 .tile::after {
@@ -60,6 +62,10 @@ td {
   width: 100%; 
   content: '';
   background: rgba(210, 210, 210, 0.6);
+}
+
+.empty {
+  background: black;
 }
 
 .empty::after {
@@ -134,13 +140,6 @@ button {
   &:focus {
     outline: none;
   }
-}
-
-.tile {
-  display: block;
-  position: absolute;
-  color: $background;
-  font-weight: bold;
 }
 
 .layout {

@@ -97,7 +97,15 @@ function changePosition(from, to, rowToUpdate) {
 // ========================================================================
 function createTile() {
     var colspan = fixedSize || oneColumn ? 1 : Math.floor(Math.random() * 2) + 1;
-    var element = $("<div></div>").addClass("tile").attr( 'id', chars[label] ).html('<span>' + chars[label] + '</span>');
+    var element = $("<div></div>").addClass("tile").attr( 'id', chars[label] );
+    
+    if( chars[label] !== 'empty' && chars[label] !== 'empty-clone' ) {
+      element.html('<span>' + chars[label] + '</span>');
+    } else {
+      element.addClass('empty');
+    }
+  
+  
     var lastX   = 0;
     label++;
 
