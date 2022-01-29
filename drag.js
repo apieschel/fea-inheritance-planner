@@ -1,37 +1,15 @@
-/* global Draggable
+/* global Draggable, TweenLite */
                   
-// GRID OPTIONS
-var rowSize   = 100;
-var colSize   = 100;
-var gutter    = 7;     // Spacing between tiles
-var numTiles  = 25;    // Number of tiles to initially populate the grid with
-var fixedSize = false; // When true, each tile's colspan will be fixed to 1
-var oneColumn = false; // When true, grid will only have 1 column and tiles have fixed colspan of 1
-var threshold = "50%"; // This is amount of overlap between tiles needed to detect a collision
-
-var $add  = $("#add");
 var $list = $(".grid-test");
-var $mode = $("input[name='layout']");
 
 // Live node list of tiles
 var tiles  = $list[0].getElementsByClassName("grid-item");
 var label  = 1;
 var zIndex = 1000;
-
-var startWidth  = "100%";
-var startSize   = colSize;
-var singleWidth = colSize * 3;
-
-var colCount   = null;
-var rowCount   = null;
-var gutterStep = null;
-
 var shadow1 = "0 1px 3px  0 rgba(0, 0, 0, 0.5), 0 1px 2px 0 rgba(0, 0, 0, 0.6)";
 var shadow2 = "0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2)";
 
 $(window).resize(resize);
-$add.click(createTile);
-$mode.change(init);
 
 init();
 
@@ -39,9 +17,6 @@ init();
 //  INIT
 // ========================================================================
 function init() {
-
-    var width = startWidth;
-
     // This value is defined when this function 
     // is fired by a radio button change event
     switch (this.value) {
@@ -116,111 +91,70 @@ function changePosition(from, to, rowToUpdate) {
     layoutInvalidated(rowToUpdate);
 }
 
-// ========================================================================
-//  CREATE TILE
-// ========================================================================
-function createTile() {
 
-    var colspan = fixedSize || oneColumn ? 1 : Math.floor(Math.random() * 2) + 1;
-    var element = $("<div></div>").addClass("tile").html(label++);
-    var lastX   = 0;
+function onPress() {
 
-    Draggable.create(element, {
-        onDrag      : onDrag,
-        onPress     : onPress,
-        onRelease   : onRelease,
-        zIndexBoost : false
+      lastX = this.x;
+      tile.isDragging = true;
+      tile.lastIndex  = tile.index;
+
+      TweenLite.to(element, 0.2, {
+          autoAlpha : 0.75,
+          boxShadow : shadow2,
+          scale     : 0.95,
+          zIndex    : "+=1000"
+      });
+}
+
+function onDrag() {
+
+    // Move to end of list if not in bounds
+    if (!this.hitTest($list, 0)) {
+        tile.inBounds = false;
+        changePosition(tile.index, tiles.length - 1);
+        return;
+    }
+
+    tile.inBounds = true;
+
+    for (var i = 0; i < tiles.length; i++) {
+
+        // Row to update is used for a partial layout update
+        // Shift left/right checks if the tile is being dragged 
+        // towards the the tile it is testing
+        var testTile    = tiles[i].tile;
+        var onSameRow   = (tile.row === testTile.row);
+        var rowToUpdate = onSameRow ? tile.row : -1;
+        var shiftLeft   = onSameRow ? (this.x < lastX && tile.index > i) : true;
+        var shiftRight  = onSameRow ? (this.x > lastX && tile.index < i) : true;
+        var validMove   = (testTile.positioned && (shiftLeft || shiftRight));
+
+        if (this.hitTest(tiles[i], threshold) && validMove) {
+            changePosition(tile.index, i, rowToUpdate);
+            break;
+        }
+    }
+
+    lastX = this.x;
+}
+
+function onRelease() {
+
+    // Move tile back to last position if released out of bounds
+    this.hitTest($list, 0)
+        ? layoutInvalidated()
+    : changePosition(tile.index, tile.lastIndex);
+
+    TweenLite.to(element, 0.2, {
+        autoAlpha : 1,
+        boxShadow: shadow1,
+        scale     : 1,
+        x         : tile.x,
+        y         : tile.y,
+        zIndex    : ++zIndex
     });
 
-    // NOTE: Leave rowspan set to 1 because this demo 
-    // doesn't calculate different row heights
-    var tile = {
-        col        : null,
-        colspan    : colspan,
-        height     : 0,
-        inBounds   : true,
-        index      : null,
-        isDragging : false,
-        lastIndex  : null,
-        newTile    : true,
-        positioned : false,
-        row        : null,
-        rowspan    : 1, 
-        width      : 0,
-        x          : 0,
-        y          : 0
-    };
-
-    // Add tile properties to our element for quick lookup
-    element[0].tile = tile;
-
-    $list.append(element);
-    layoutInvalidated();
-
-    function onPress() {
-
-        lastX = this.x;
-        tile.isDragging = true;
-        tile.lastIndex  = tile.index;
-
-        TweenLite.to(element, 0.2, {
-            autoAlpha : 0.75,
-            boxShadow : shadow2,
-            scale     : 0.95,
-            zIndex    : "+=1000"
-        });
-    }
-
-    function onDrag() {
-
-        // Move to end of list if not in bounds
-        if (!this.hitTest($list, 0)) {
-            tile.inBounds = false;
-            changePosition(tile.index, tiles.length - 1);
-            return;
-        }
-
-        tile.inBounds = true;
-
-        for (var i = 0; i < tiles.length; i++) {
-
-            // Row to update is used for a partial layout update
-            // Shift left/right checks if the tile is being dragged 
-            // towards the the tile it is testing
-            var testTile    = tiles[i].tile;
-            var onSameRow   = (tile.row === testTile.row);
-            var rowToUpdate = onSameRow ? tile.row : -1;
-            var shiftLeft   = onSameRow ? (this.x < lastX && tile.index > i) : true;
-            var shiftRight  = onSameRow ? (this.x > lastX && tile.index < i) : true;
-            var validMove   = (testTile.positioned && (shiftLeft || shiftRight));
-
-            if (this.hitTest(tiles[i], threshold) && validMove) {
-                changePosition(tile.index, i, rowToUpdate);
-                break;
-            }
-        }
-
-        lastX = this.x;
-    }
-
-    function onRelease() {
-
-        // Move tile back to last position if released out of bounds
-        this.hitTest($list, 0)
-            ? layoutInvalidated()
-        : changePosition(tile.index, tile.lastIndex);
-
-        TweenLite.to(element, 0.2, {
-            autoAlpha : 1,
-            boxShadow: shadow1,
-            scale     : 1,
-            x         : tile.x,
-            y         : tile.y,
-            zIndex    : ++zIndex
-        });
-
-        tile.isDragging = false;
-    }
+    tile.isDragging = false;
 }
 
 // ========================================================================
