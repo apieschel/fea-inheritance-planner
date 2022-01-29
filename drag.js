@@ -1,7 +1,11 @@
-/* global Draggable, TweenLite */
+/* Source: https://codepen.io/osublake/pen/RNLdpz */
+/* global Draggable, TweenLite, characters */
 // GRID OPTIONS
-var rowSize   = 100;
-var colSize   = 100;
+const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+const chars = Object.keys( characters.first_gen ).concat( Object.keys( characters.second_gen ) );
+var rowSize   = vh / 5;
+var colSize   = vw / 10;
 var gutter    = 0;     // Spacing between tiles
 var numTiles  = 50;    // Number of tiles to initially populate the grid with
 var fixedSize = true; // When true, each tile's colspan will be fixed to 1
@@ -49,7 +53,7 @@ function init() {
 
     function populateBoard() {
 
-        label = 1;
+        label = 0;
         resize();
 
         for (var i = 0; i < numTiles; i++) {
@@ -90,9 +94,9 @@ function changePosition(from, to, rowToUpdate) {
 //  CREATE TILE
 // ========================================================================
 function createTile() {
-
+    label++;
     var colspan = fixedSize || oneColumn ? 1 : Math.floor(Math.random() * 2) + 1;
-    var element = $("<div></div>").addClass("tile").html(label++);
+    var element = $("<div></div>").addClass("tile").html('<span>' + chars[label] + '</span>');
     var lastX   = 0;
 
     Draggable.create(element, {

@@ -97,12 +97,6 @@ html {
   font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
 }
 
-body {
-  background: $background;
-  padding: 25px;
-
-}
-
 *, *:before, *:after {
   box-sizing: border-box;
 }
