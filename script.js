@@ -172,14 +172,25 @@ function calculate( mother, father, child, active_class, calc ) {
   const dataComplete = characters.second_gen[child] && characters.first_gen[mother] && characters.first_gen[father] && classes[active_class] && classes[active_class][calc] && characters.first_gen[mother][calc] && characters.first_gen[father][calc];  
   
   if( dataComplete ) {
-    const childStats = Object.values( characters.second_gen[child][calc] );
+    let childStats = [];
+    
+    if( calc === 'growths' ) {    
+      childStats = Object.values( characters.second_gen[child][calc] );
+    }
+    
     const motherStats = Object.values( characters.first_gen[mother][calc] );
     const fatherStats = Object.values( characters.first_gen[father][calc] );
     const activeClass = Object.values( classes[active_class][calc] );
     const newValues = [];
     
-    childStats.forEach( ( val, i ) => {
-      newValues.push( Math.floor( ( ( val + motherStats[i] + fatherStats[i] ) / 3 ) + activeClass[i] ) ); 
+    growthKeys.forEach( ( val, i ) => {
+      if( calc === 'growths' ) {   
+        newValues.push( Math.floor( ( ( childStats[i] + motherStats[i] + fatherStats[i] ) / 3 ) + activeClass[i] ) );  
+      }
+      
+      if( calc === 'caps' ) {
+        newValues.push( motherStats[i] + fatherStats[i] + 1 );    
+      }
     } );
     
     return newValues;
@@ -215,7 +226,10 @@ if( fatherSelect ) {
         growthCell.innerText = newGrowths[i] + '%';
         growthRow.appendChild( growthCell );
         
-        if( i !== 0 ) {
+        if( i === 0 ) {
+          const capCell = document.createElement( 'td' );
+          capRow.appendChild( capCell );
+        } else {
           const capCell = document.createElement( 'td' );
           capCell.innerText = newCaps[i - 1];
           capRow.appendChild( capCell );
