@@ -67,10 +67,18 @@ td {
   background: rgba(210, 210, 210, 0.6);
 }
 
+.empty::after {
+  background: transparent;
+}
+
 .chrom {
   background-image: url('https://cdn.glitch.global/9e2e29a4-7d22-4811-83ed-f363a298e10c/chrom.png?v=1643478689150');
 }
 
 .robin {
   background-image: url('https://cdn.glitch.global/9e2e29a4-7d22-4811-83ed-f363a298e10c/robin.png?v=1643479480614');
+}
+
+.lissa {
+  background-image: url('https://cdn.glitch.global/9e2e29a4-7d22-4811-83ed-f363a298e10c/lissa.png?v=1643480138596');
 }

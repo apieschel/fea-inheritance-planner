@@ -13,10 +13,11 @@ function load_grid() {
     } ); 
     
     const emptyCell = document.createElement( 'div' );
-    emptyCell.className = 'grid-item';
-    emptyCell.style = 'background: black;';
+    emptyCell.className = 'grid-item empty';
+    emptyCell.style = 'background: black; border-right: none;';
     grid.appendChild( emptyCell );
     const emptyCellClone = emptyCell.cloneNode();
+    emptyCellClone.style = 'background: black; border-left: none;';
     grid.appendChild( emptyCellClone );
     
     Object.keys( characters.second_gen ).forEach( ( character ) => {
