@@ -217,6 +217,15 @@ if( fatherSelect ) {
     const newGrowths = calculate( 'olivia', e.target.value, 'inigo', 'mercenary', 'growths' );
     const newCaps = calculate( 'olivia', e.target.value, 'inigo', 'mercenary', 'caps' );
     
+    const growthsHead = document.createElement( 'th');
+    growthsHead.innerText = 'Growths';
+    const capsHead = document.createElement( 'th');
+    capsHead.innerText = 'Caps';
+    
+    keyrow.appendChild( document.createElement( 'th') );
+    growthRow.appendChild( growthsHead );
+    capRow.appendChild( capsHead );
+    
     if( newGrowths && newCaps ) { 
       growthKeys.map( ( val, i ) => {
         const th = document.createElement( 'th' );
@@ -241,7 +250,7 @@ if( fatherSelect ) {
           }
         }
       } );
-
+  
       thead.appendChild( keyrow );
       tbody.appendChild( growthRow );
       tbody.appendChild( capRow );
