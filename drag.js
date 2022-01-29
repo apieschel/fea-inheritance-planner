@@ -3,11 +3,13 @@
 // GRID OPTIONS
 const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-const chars = Object.keys( characters.first_gen ).concat( Object.keys( characters.second_gen ) );
+let chars = Object.keys( characters.first_gen );
+chars = chars.concat( ['empty', 'empty-clone'] );
+chars = chars.concat( Object.keys( characters.second_gen ) ); 
 var rowSize   = vh / 5;
-var colSize   = vw / 10;
+var colSize   = vw / 9;
 var gutter    = 0;     // Spacing between tiles
-var numTiles  = 50;    // Number of tiles to initially populate the grid with
+var numTiles  = 45;    // Number of tiles to initially populate the grid with
 var fixedSize = true; // When true, each tile's colspan will be fixed to 1
 var oneColumn = false; // When true, grid will only have 1 column and tiles have fixed colspan of 1
 var threshold = "50%"; // This is amount of overlap between tiles needed to detect a collision
@@ -16,7 +18,7 @@ var $list = $("#list");
 
 // Live node list of tiles
 var tiles  = $list[0].getElementsByClassName("tile");
-var label  = 1;
+var label  = 0;
 var zIndex = 1000;
 
 var startWidth  = "100vw";
@@ -94,10 +96,10 @@ function changePosition(from, to, rowToUpdate) {
 //  CREATE TILE
 // ========================================================================
 function createTile() {
-    label++;
     var colspan = fixedSize || oneColumn ? 1 : Math.floor(Math.random() * 2) + 1;
-    var element = $("<div></div>").addClass("tile").html('<span>' + chars[label] + '</span>');
+    var element = $("<div></div>").addClass("tile").attr( 'id', chars[label] ).html('<span>' + chars[label] + '</span>');
     var lastX   = 0;
+    label++;
 
     Draggable.create(element, {
         onDrag      : onDrag,

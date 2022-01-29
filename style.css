@@ -44,19 +44,17 @@ td {
   margin: 0;
 }
 
-.grid-item {
-  background-size: cover;
-  border: 2px solid black;
-  overflow: hidden;
+.tile span {
   text-transform: capitalize;
-}
-
-.grid-item span {
   padding: 2px;
   position: absolute;
 }
 
-.grid-item::after {
+.tile {
+  background-size: cover;  
+}
+
+.tile::after {
   display: block;
   height: 100%;
   width: 100%; 
@@ -141,9 +139,7 @@ button {
 .tile {
   display: block;
   position: absolute;
-  background-color: $tile-color;
   color: $background;
-  padding: 5px;
   font-weight: bold;
 }
 
