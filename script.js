@@ -168,7 +168,7 @@ function display_character_stats() {
   growths.appendChild( table );
 }
 
-function calculate_growth_rates( mother, father, child, active_class ) {
+function calculate( mother, father, child, active_class ) {
   if( characters.second_gen[child] && characters.first_gen[mother] && characters.first_gen[father] && classes[active_class] ) {
     const childGrowths = Object.values( characters.second_gen[child].growths );
     const motherGrowths = Object.values( characters.first_gen[mother].growths );
@@ -187,24 +187,6 @@ function calculate_growth_rates( mother, father, child, active_class ) {
   }
 }
 
-function calculate_stat_caps( mother, father, child, active_class ) {
-  if( characters.second_gen[child] && characters.first_gen[mother] && characters.first_gen[father] && classes[active_class] ) {
-    const childCaps = Object.values( characters.second_gen[child].caps );
-    const motherCaps = Object.values( characters.first_gen[mother].caps );
-    const fatherCaps = Object.values( characters.first_gen[father].caps );
-    const classCaps = Object.values( classes[active_class].caps );
-    const newCaps = [];
-    
-    childCaps.forEach( ( val, i ) => {
-      newCaps.push( Math.floor( ( ( val + motherGrowths[i] + fatherGrowths[i] ) / 3 ) + classGrowths[i] ) ); 
-    } );
-    
-    return newGrowths;
-  } else {
-    console.log( 'Data is missing.' );
-    return false;
-  }  
-}
 
 display_character_stats();
 
@@ -219,16 +201,20 @@ if( fatherSelect ) {
     const keyrow = document.createElement( 'tr' );
     const valrow = document.createElement( 'tr' );
     
-    const newGrowths = calculate_growth_rates( 'olivia', e.target.value, 'inigo', 'mercenary' );
+    const newGrowths = calculate( 'olivia', e.target.value, 'inigo', 'mercenary', 'growths' );
+    const newCaps = calculate( 'olivia', e.target.value, 'inigo', 'mercenary', 'caps' );
     
-    if( newGrowths ) { 
-      Object.keys( characters.first_gen[character].growths ).map( ( key ) => {
+    if( newGrowths && newCaps ) { 
+      growthKeys.map( ( key ) => {
         const th = document.createElement( 'th' );
         th.innerText = key;
         keyrow.appendChild( th );
       } );
 
-      newGrowths.map( ( val ) => {
+      newGrowths.map( ( val, i ) => {
+        const th = document.createElement( 'th' );
+        th.innerText = key;
+        keyrow.appendChild( th );
         const td = document.createElement( 'td' );
         td.innerText = val + '%';
         valrow.appendChild( td );
