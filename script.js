@@ -54,6 +54,44 @@ const characters = {
     sumia: {},
     kellam: {},
     donnel: {},
+    ricken: {},
+    maribelle: {}, 
+    panne: {},
+    gaius: {},
+    cordelia: {},
+    gregor: {}
+    lonqu: {   
+      base: {
+        hp: 20,
+        strength: 6,
+        magic: 1,
+        skill: 12,
+        speed: 13,
+        luck: 7, 
+        def: 7,
+        res: 2,
+      },
+      growths: {
+        hp: 40,
+        strength: 35,
+        magic: 20,
+        skill: 50,
+        speed: 50,
+        luck: 55, 
+        def: 25,
+        res: 20,
+      },
+      caps: { 
+        strength: 0,
+        magic: 0,
+        skill: 3,
+        speed: 3,
+        luck: 0, 
+        def: -2,
+        res: -2,
+      },
+      classes: ["myrmidon", "swordmaster", "assassin", "thief", "trickster", "wyvern_rider", "wyvern_lord", "griffon_rider"],
+    },
     olivia: {  
       base: {
         hp: 11,
@@ -86,38 +124,6 @@ const characters = {
       },
       classes: ["mercenary", "hero", "bow_knight", "myrmidon", "swordmaster", "assassin", "barbarian", "berserker", "warrior"],
     },
-    lonqu: {   
-      base: {
-        hp: 20,
-        strength: 6,
-        magic: 1,
-        skill: 12,
-        speed: 13,
-        luck: 7, 
-        def: 7,
-        res: 2,
-      },
-      growths: {
-        hp: 40,
-        strength: 35,
-        magic: 20,
-        skill: 50,
-        speed: 50,
-        luck: 55, 
-        def: 25,
-        res: 20,
-      },
-      caps: { 
-        strength: 0,
-        magic: 0,
-        skill: 3,
-        speed: 3,
-        luck: 0, 
-        def: -2,
-        res: -2,
-      },
-      classes: ["myrmidon", "swordmaster", "assassin", "thief", "trickster", "wyvern_rider", "wyvern_lord", "griffon_rider"],
-    }
   },
   second_gen: {
     inigo: {
