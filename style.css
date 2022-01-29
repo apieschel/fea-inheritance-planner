@@ -33,8 +33,12 @@ td {
   border-right: 1px solid black;
 }
 
-.grid-test {
+.content {
   display: none;
+}
+
+.grid-test {
+  display: grid;
   height: 100vh;
   width: 100vw;
   padding: 0;
