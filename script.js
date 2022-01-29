@@ -138,6 +138,7 @@ const characters = {
 
 const fatherSelect = document.querySelector( '.father' );
 const stats = document.querySelector( '.stats' );
+const className = document.querySelector( '.className' );
 
 function display_character_stats() {
   let character = document.querySelector( '.character' );
@@ -166,6 +167,18 @@ function display_character_stats() {
   table.appendChild( thead );
   table.appendChild( tbody );
   stats.appendChild( table );
+}
+
+function load_classes() {
+  const classes = characters.second_gen.inigo.classes;
+  console.log( classes );
+  
+  classes.forEach( ( item ) => {
+    const option = document.createElement( 'option');
+    option.innerText = item;
+    option.value = item;
+    className.appendChild( option );
+  } );
 }
 
 function calculate( mother, father, child, active_class, calc ) {
@@ -199,8 +212,6 @@ function calculate( mother, father, child, active_class, calc ) {
     return false;
   }  
 }
-
-display_character_stats();
 
 if( fatherSelect ) {
   fatherSelect.addEventListener( 'change', ( e ) => {  
@@ -260,3 +271,6 @@ if( fatherSelect ) {
     }
   } );  
 }
+
+display_character_stats();
+load_classes();
