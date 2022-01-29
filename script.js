@@ -211,7 +211,6 @@ function display_character_stats() {
 
 function load_classes() {
   const classes = characters.second_gen.inigo.classes;
-  console.log( classes );
   
   classes.forEach( ( item ) => {
     const option = document.createElement( 'option');
@@ -248,7 +247,6 @@ function calculate( mother, father, child, active_class, calc ) {
     
     return newValues;
   } else {
-    console.log( 'Data is missing.' );
     return false;
   }  
 }
