@@ -231,8 +231,14 @@ if( fatherSelect ) {
           capRow.appendChild( capCell );
         } else {
           const capCell = document.createElement( 'td' );
-          capCell.innerText = newCaps[i - 1];
-          capRow.appendChild( capCell );
+          
+          if( newCaps[i - 1] > 0 ) {
+            capCell.innerText = '+' + newCaps[i - 1];
+            capRow.appendChild( capCell );
+          } else {
+            capCell.innerText = newCaps[i - 1];
+            capRow.appendChild( capCell );
+          }
         }
       } );
 
