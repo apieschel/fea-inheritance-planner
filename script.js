@@ -137,7 +137,7 @@ const characters = {
 };
 
 const fatherSelect = document.querySelector( '.father' );
-const growths = document.querySelector( '.growths' );
+const stats = document.querySelector( '.stats' );
 
 function display_character_stats() {
   let character = document.querySelector( '.character' );
@@ -165,7 +165,7 @@ function display_character_stats() {
   tbody.appendChild( valrow );
   table.appendChild( thead );
   table.appendChild( tbody );
-  growths.appendChild( table );
+  stats.appendChild( table );
 }
 
 function calculate( mother, father, child, active_class, calc ) {
@@ -204,7 +204,7 @@ display_character_stats();
 
 if( fatherSelect ) {
   fatherSelect.addEventListener( 'change', ( e ) => {  
-    growths.innerHTML = '';
+    stats.innerHTML = '';
     
     const character = e.target.value;
     let table = document.createElement( 'table' );
@@ -256,7 +256,7 @@ if( fatherSelect ) {
       tbody.appendChild( capRow );
       table.appendChild( thead );
       table.appendChild( tbody );
-      growths.appendChild( table );
+      stats.appendChild( table );
     }
   } );  
 }
