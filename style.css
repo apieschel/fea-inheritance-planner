@@ -37,14 +37,11 @@ td {
   display: none;
 }
 
-.grid-test {
-  display: grid;
+.grid {
   height: 100vh;
   width: 100vw;
   padding: 0;
   margin: 0;
-  grid-template-columns: 11.11% 11.11% 11.11% 11.11% 11.11% 11.11% 11.11% 11.11% 11.11%;
-  grid-template-rows: 20% 20% 20% 20% 20%;
 }
 
 .grid-item {
@@ -90,4 +87,86 @@ td {
 
 #frederick {
   background-image: url('https://cdn.glitch.global/9e2e29a4-7d22-4811-83ed-f363a298e10c/frederick.png?v=1643484783380');
+}
+
+$background: #3A3A4D;
+$tile-color: yellowgreen;
+$color: #efefef;
+
+html {
+  font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+}
+
+body {
+  background: $background;
+  padding: 25px;
+
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+h1 {
+  color: $color;
+  font-weight: normal;
+  font-weight: 300;
+  margin-bottom: 30px;
+
+  a {
+    color: $color;
+    border-bottom: 2px solid $color;
+    text-decoration: none;
+    padding-bottom: 3px;
+    
+    &:hover {
+      color: $tile-color;
+      border-color: $tile-color;
+    }
+  }
+}
+
+button {
+  padding: 12px 30px;
+  box-shadow: none;
+  border: none;
+  color: $color;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.3);
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.35);
+    color: $tile-color;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.tile {
+  display: block;
+  position: absolute;
+  background-color: $tile-color;
+  color: $background;
+  padding: 5px;
+  font-weight: bold;
+}
+
+.layout {
+  color: $color;
+  margin-bottom: 15px;
+  
+  label {
+    margin-right: 15px;
+    cursor: pointer;
+    
+    &:hover {
+      color: $tile-color;
+    }
+  }
+
+  input {
+    margin-right: 3px;
+  }
 }
