@@ -27,7 +27,7 @@ function sortable(section, onUpdate){
             /*  console.log("oldPos:" + JSON.stringify(oldPos));
              console.log("newPos:" + JSON.stringify(newPos)); */
              /* console.log(newPos.top === oldPos.top ? 'They are the same' : 'Not the same'); */
-           console.log(oldPos);
+             // console.log(oldPos);
             }
         }   
     }
@@ -38,7 +38,7 @@ function sortable(section, onUpdate){
              let pos = document.getElementById(child.id).getBoundingClientRect();
              return pos;
            });
-        console.log(newPos);
+        // console.log(newPos);
         dragEl.classList.remove('ghost');
         section.removeEventListener('dragover', _onDragOver, false);
         section.removeEventListener('dragend', _onDragEnd, false);
@@ -69,7 +69,7 @@ function sortable(section, onUpdate){
 }
                                           
 sortable( document.querySelector( '.grid-test' ), function (item){
-    console.log(item);
+    // console.log(item);
 });
 
 /* The setData() method is used to add an item to the drag data, as shown in the following example.
