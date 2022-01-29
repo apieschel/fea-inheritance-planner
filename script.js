@@ -187,6 +187,25 @@ function calculate_growth_rates( mother, father, child, active_class ) {
   }
 }
 
+function calculate_stat_caps( mother, father, child, active_class ) {
+  if( characters.second_gen[child] && characters.first_gen[mother] && characters.first_gen[father] && classes[active_class] ) {
+    const childCaps = Object.values( characters.second_gen[child].caps );
+    const motherCaps = Object.values( characters.first_gen[mother].caps );
+    const fatherCaps = Object.values( characters.first_gen[father].caps );
+    const classCaps = Object.values( classes[active_class].caps );
+    const newCaps = [];
+    
+    childCaps.forEach( ( val, i ) => {
+      newCaps.push( Math.floor( ( ( val + motherGrowths[i] + fatherGrowths[i] ) / 3 ) + classGrowths[i] ) ); 
+    } );
+    
+    return newGrowths;
+  } else {
+    console.log( 'Data is missing.' );
+    return false;
+  }  
+}
+
 display_character_stats();
 
 if( fatherSelect ) {
