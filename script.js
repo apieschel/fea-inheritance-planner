@@ -168,25 +168,24 @@ function display_character_stats() {
   growths.appendChild( table );
 }
 
-function calculate( mother, father, child, active_class ) {
-  if( characters.second_gen[child] && characters.first_gen[mother] && characters.first_gen[father] && classes[active_class] ) {
-    const childGrowths = Object.values( characters.second_gen[child].growths );
-    const motherGrowths = Object.values( characters.first_gen[mother].growths );
-    const fatherGrowths = Object.values( characters.first_gen[father].growths );
-    const classGrowths = Object.values( classes[active_class].growths );
-    const newGrowths = [];
+function calculate( mother, father, child, active_class, calc ) {
+  if( characters.second_gen[child] && characters.first_gen[mother] && characters.first_gen[father] && classes[active_class] && classes ) {
+    const child = Object.values( characters.second_gen[child][calc] );
+    const mother = Object.values( characters.first_gen[mother][calc] );
+    const father = Object.values( characters.first_gen[father][calc] );
+    const activeClass = Object.values( classes[active_class][calc] );
+    const newValues = [];
     
-    childGrowths.forEach( ( val, i ) => {
-      newGrowths.push( Math.floor( ( ( val + motherGrowths[i] + fatherGrowths[i] ) / 3 ) + classGrowths[i] ) ); 
+    child.forEach( ( val, i ) => {
+      newValues.push( Math.floor( ( ( val + mother[i] + father[i] ) / 3 ) + activeClass[i] ) ); 
     } );
     
-    return newGrowths;
+    return newValues;
   } else {
     console.log( 'Data is missing.' );
     return false;
-  }
+  }  
 }
-
 
 display_character_stats();
 
@@ -199,29 +198,31 @@ if( fatherSelect ) {
     let thead = document.createElement( 'thead' );
     let tbody = document.createElement( 'tbody' );
     const keyrow = document.createElement( 'tr' );
-    const valrow = document.createElement( 'tr' );
+    const growthRow = document.createElement( 'tr' );
+    const capRow = document.createElement( 'tr' );
     
     const newGrowths = calculate( 'olivia', e.target.value, 'inigo', 'mercenary', 'growths' );
     const newCaps = calculate( 'olivia', e.target.value, 'inigo', 'mercenary', 'caps' );
     
     if( newGrowths && newCaps ) { 
-      growthKeys.map( ( key ) => {
+      growthKeys.map( ( val, i ) => {
         const th = document.createElement( 'th' );
-        th.innerText = key;
+        th.innerText = val;
         keyrow.appendChild( th );
-      } );
-
-      newGrowths.map( ( val, i ) => {
-        const th = document.createElement( 'th' );
-        th.innerText = key;
-        keyrow.appendChild( th );
-        const td = document.createElement( 'td' );
-        td.innerText = val + '%';
-        valrow.appendChild( td );
+        const growthCell = document.createElement( 'td' );
+        growthCell.innerText = newGrowths[i] + '%';
+        growthRow.appendChild( growthCell );
+        
+        if( i !== 0 ) {
+          const capCell = document.createElement( 'td' );
+          capCell.innerText = newCaps[i - 1];
+          capRow.appendChild( capCell );
+        }
       } );
 
       thead.appendChild( keyrow );
-      tbody.appendChild( valrow );
+      tbody.appendChild( growthRow );
+      tbody.appendChild( capRow );
       table.appendChild( thead );
       table.appendChild( tbody );
       growths.appendChild( table );
