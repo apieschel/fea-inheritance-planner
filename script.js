@@ -42,6 +42,9 @@ const classes = {
 
 const characters = {
   first_gen: {
+    robin: {},
+    chrom: {},
+    lissa: {},
     olivia: {  
       base: {
         hp: 11,
