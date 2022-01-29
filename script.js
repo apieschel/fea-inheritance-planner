@@ -233,7 +233,9 @@ if( fatherSelect ) {
     const capsHead = document.createElement( 'th');
     capsHead.innerText = 'Caps';
     
-    keyrow.appendChild( document.createElement( 'th') );
+    const nameCell = document.createElement( 'th' );
+    nameCell.innerText = 'Inigo';
+    keyrow.appendChild( nameCell );
     growthRow.appendChild( growthsHead );
     capRow.appendChild( capsHead );
     
